@@ -1,0 +1,11 @@
+{
+  "name": "style",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generateBundle.js",
+  "scripts": {
+    "build": "node generateBundle.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

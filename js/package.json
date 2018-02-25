@@ -1,0 +1,20 @@
+{
+  "name": "videopedia-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/browserify ./src/index.js | ./node_modules/.bin/google-closure-compiler-js > ./build/bundle.js",
+    "build-dev": "./node_modules/.bin/watchify ./src/index.js -o ./build/bundle.js",
+    "build-lib": "node ./libs/generateBundle.js ./build/lib.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.5.0",
+    "google-closure-compiler-js": "^20171203.0.0",
+    "inline-source": "^5.2.6",
+    "uglify-js": "^3.1.10",
+    "watchify": "^3.9.0"
+  }
+}

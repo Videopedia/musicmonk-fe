@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SSL redirect -->
+    <script type="text/javascript">
+    if (location.protocol != 'https:' && window.location.origin.indexOf('musicmonk.in') > 0)
+        location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+
+
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=384, user-scalable=no">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://musicmonk.in"/>
+    <meta property="og:title" content="Musicmonk"/>
+    <meta property="og:image" content="https://musicmonk.in/static/images/icons/icon256.png"/>
+    <meta property="og:description" content="Listen great music, together with people you know!"/>
+    <meta property="fb:admins" content="100000206242821"/>
+    <meta property="fb:app_id" content="862445890467064"/>
+    <meta name="keywords" content="music, friends"/>
+    <meta name="description" content="Listen great music, together with people you know!"/>
+
+    <meta name="google-signin-client_id"
+          content="715692314569-6quttqf1ubb47cqsl0d35ctov26rpevh.apps.googleusercontent.com">
+
+    <title>Musicmonk</title>
+
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/icons/icon192.png">
+    <!--[if IE]>
+    <link rel="shortcut icon" href="/static/images/icons/icon.ico"><![endif]-->
+    <!-- Add to home screen for Android and modern mobile browsers -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#38bfc4">
+
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Musicmonk">
+    <link rel="apple-touch-icon" href="/static/images/icons/icon192.png">
+
+    <!-- Add to home screen for Windows -->
+    <meta name="msapplication-TileImage" content="/static/images/icons/icon192.png">
+    <meta name="msapplication-TileColor" content="#38bfc4">
+
+    <link rel="stylesheet" href="/style/lib.css?v=0.10">
+    <style>@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+body {
+	font-family: 'Nunito', sans-serif;
+    padding: 0;
+    margin: 0;
+	padding-top:55px;
+	padding-bottom:261px;
+	font-size: 16px;
+	background: #f1f1f1;
+}
+
+body, html {
+	/* Disables pull-to-refresh */
+	overscroll-behavior-y: none;
+}
+
+body.player-faded {
+	padding-bottom: 45px;
+}
+
+header {
+    background: #38bfc4;
+    height: 55px;
+    position: fixed;
+    top: 0;
+    transition: top 0.2s ease-in-out;
+    width: 100%;
+    z-index: 1;
+    color: white;
+    box-shadow: 0 2px 2px 0 #ccc;
+}
+
+header img.logo {
+	height: 35px
+}
+
+header .row {
+	margin-top:10px;
+}
+
+.nav-elem {
+	font-size: 14px;
+	line-height: 18px;
+}
+
+.nav-elem .glyphicon {
+	font-size: 16px;
+}
+
+#account-settings{
+	height: 20px;
+	width: 20px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+#search{
+    border: 0;
+    margin-top: 4px;
+}
+
+#search-bar .search-close {
+	margin-top: 10px;
+}
+
+.header-tab {
+	cursor: pointer;
+	height: 38px;
+	overflow: hidden;
+}
+
+.header-tab.active .glyphicon, .header-tab:hover .glyphicon{
+	color: lawngreen;
+}
+
+.template, .page {
+	display: none;
+}
+
+.simple-row {
+	padding: 5px;
+	background: white;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+
+.simple-row > .row{
+	margin: 5px 0;
+}
+
+#yt-player-c{
+    background:#000;
+    height: 216px;
+    position: fixed;
+    bottom: 45px;
+    left:0;
+    width: 100%;
+    min-width:384px;
+    text-align:center;
+    z-index: 1;
+    box-shadow: 0 -2px 2px 0 #ccc;
+    opacity: 1;
+    transition: bottom 0.3s ease-out, opacity 0.2s ease-in;
+}
+
+body.player-faded #yt-player-c {
+    bottom: -172px;
+    opacity: 0;
+}
+
+#yt-player {
+    height: 216px;
+    width: 384px;
+}
+
+footer {
+    background:#38bfc4;
+    height: 45px;
+    line-height: 45px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    color: #fff;
+}
+
+.yt-control {
+    cursor: pointer;
+}
+
+/* Global defaults */
+
+.overflow-ellipses {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+.break-word {
+	word-wrap: break-word;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+input {
+    margin: 0px;
+    padding: 3px 0px;
+    border: 0px;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #333;
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+    outline: 0;
+    box-sizing: border-box;
+    width:100%;
+}
+
+/* Placeholder color */
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: inherit;
+    text-align: left;
+    opacity: 0.8;
+    padding-left: 7px;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: inherit;
+    text-align: left;
+    opacity: 0.8;
+    padding-left: 7px;
+}
+
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: inherit;
+    text-align: left;
+    opacity: 0.8;
+    padding-left: 7px;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: inherit;
+    text-align: left;
+    opacity: 0.8;
+    padding-left: 7px;
+}
+
+.loader-c {
+	position: relative;
+	height: 30px;
+	text-align: center;
+}
+
+.loader-c img {
+	height: 100%;
+}
+
+.loader-c .loader {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	box-sizing: border-box;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	border-top: 3px solid #38bfc4;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	-webkit-animation: spin 0.7s linear infinite;
+	animation: spin 0.7s linear infinite;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.scrollable {
+	overscroll-behavior: contain;
+	overflow: auto;
+}
+
+.yt-control-play {
+	cursor: pointer
+}
+
+.page-navtab {
+	float: left;
+	padding: 5px 10px;
+	background: white;
+	border-radius: 4px;
+	color: #38bfc4;
+	cursor: pointer;
+	box-shadow: 0px 0px 8px #ddd;
+}
+
+.btn-primary {
+	background: #38bfc4 !important;
+	border-color: #38bfc4 !important;
+}</style>
+</head>
+<body class="player-faded">
+<div id=preloader
+     style="position:fixed; width:100%; height:100%; z-index:9999999999; top:0; left:0; background:white; text-align:center;">
+    <img src="/static/images/loading.gif"
+         style="width: 30px; position: absolute; top: 0; bottom: 50%; left: 0; right: 0; margin: auto; box-sizing: border-box;"/>
+    <noscript>Please enable Javascript to continue</noscript>
+</div>
+<header scroll-upto="">
+    <div class="container text-center">
+        <div id="search-bar" class="row hidden">
+            <div class="col-xs-10 text-left">
+                <input id="search" name="music-search" type="search" placeholder="Search music"/>
+            </div>
+            <div class="col-xs-2 text-right">
+                <span class="glyphicon glyphicon-remove search-close clickable"></span>
+            </div>
+        </div>
+        <div id="header-tabs" class="row nav-elem">
+            <div class="col-xs-4 header-tab" id="navtab-search"><span class="glyphicon glyphicon-search"></span><br/>Search
+            </div>
+            <div class="col-xs-4 header-tab activatable" id="navtab-bridge"><span
+                    class="glyphicon glyphicon-equalizer"></span><br/>Music Bridge
+            </div>
+            <div class="col-xs-4 header-tab" id="account-c">
+                <img id="account-settings" src="/static/images/default-user-300x300.png"/>
+                <br/><span class="user-display-name">Music Lover</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container" style="padding-top: 10px;">
+    <div id="simple-row-template" class="template simple-row">
+        <div class="row">
+            <div class="col-xs-12 yt-control-play">
+                <img src="" class="media-thumb img-circle"
+                     style="height: 42px;	width: 42px; margin-left: 11px; float: right;"/>
+                <div class="media-title">Title</div>
+            </div>
+        </div>
+        <div class="row hidden">
+            <div class="col-xs-12 media-description break-word overflow-ellipses hidden-xs">
+                Description
+            </div>
+        </div>
+        <div class="row">
+            <div class="media-year hidden">
+                Year
+            </div>
+            <div class="col-xs-2 text-left yt-control-play" vid="l0DoQYGZt8M">
+                <span class="glyphicon glyphicon-play"></span>
+            </div>
+            <div class="col-xs-2 text-center like-button">
+                <span class="glyphicon glyphicon-heart"></span>
+            </div>
+            <div class="col-xs-2 text-right share-button">
+                <span class="glyphicon glyphicon-share"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="conversation-page" class="page">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-navtab" data-toggle="modal" data-target="#new-bridge-modal">Create bridge</div>
+            </div>
+        </div>
+        <div class="conversations" style="margin-top: 10px;">
+            <div class="simple-row conversation">
+                <div class="row">
+                    <div class="col-sm-1 col-xs-2 text-left">
+                        <img src="/static/images/default-user-300x300.png" class="bridge-thumb img-circle"
+                             style="height: 42px; width: 42px;"/>
+                    </div>
+                    <div class="col-sm-11 col-xs-10">
+                        <div class="row">
+                            <div class="col-xs-12 bridge-title">
+                                Title
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 bridge-description">
+                                Last played song
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modals -->
+<div id="new-bridge-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"><strong>Bridge</strong></h4>
+                <h5 class="modal-title text-center">Listen great music, together with people you know!</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal add-identifier-form" action="javascript:void(0);" autocomplete="off">
+                    <div class="form-group col-xs-12">
+                        Enter a name for the bridge:
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <input type="text" class="form-control bridge-name"
+                                       placeholder="e.g. 90's music with school friends" autocomplete="off" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        Invite people via email:
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10 col-xs-9">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="email" class="form-control add-bridge-identifier"
+                                       placeholder="e.g. friend@email.com" autocomplete="off" required/>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-3 text-right">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 added-identifiers">
+                            <button class="added-identifier btn btn-default"
+                                    style="margin-right: 6px; margin-bottom: 6px"><span
+                                    class="added-identifier-display"></span> &nbsp;<b>X</b></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <form class="form-horizontal add-identifier-form-submit" action="javascript:void(0);"
+                      autocomplete="off">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="user-profile-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Hello music lover!</h4>
+            </div>
+            <form class="form-horizontal set-user-profile-form" action="javascript:void(0);">
+                <div class="modal-body">
+                    <div class="form-group col-xs-12">
+                        Your name
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" class="form-control user-name" placeholder="full name"
+                                   autocomplete="name"
+                                   required/>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        Email address
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="email" class="form-control user-email" placeholder="email address"
+                                   autocomplete="email" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="profile-otp-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">We just sent you an OTP</h4>
+            </div>
+            <form class="form-horizontal profile-otp-form" action="javascript:void(0);">
+                <div class="modal-body">
+                    <div class="form-group col-xs-12">
+                        Enter the OTP here and we are ready
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" class="form-control otp" placeholder="OTP" autocomplete="off" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <small>OTP delayed? You may login later by clicking the link you receive in the email
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="yt-player-c" class="faded">
+    <div id="yt-player" yt-default="RTFhmXaXQXI"></div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-1 yt-control yt-control-play"><span class="glyphicon glyphicon-play"></span></div>
+            <div class="col-xs-1 yt-control yt-control-next"><span class="glyphicon glyphicon-forward"></span></div>
+            <div class="col-xs-1 like-button"><span class="glyphicon glyphicon-heart"></span></div>
+            <div class="col-xs-1 share-button"><span class="glyphicon glyphicon-share"></span></div>
+            <div class="col-xs-8 text-right yt-now-playing-title overflow-ellipses">...</div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS Libs -->
+<script src="/js/build/lib.js?v=0.12"></script>
+<script>var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.findInternal=function(a,b,g){a instanceof String&&(a=String(a));for(var f=a.length,h=0;h<f;h++){var k=a[h];if(b.call(g,k,h,a))return{i:h,v:k}}return{i:-1,v:void 0}};$jscomp.ASSUME_ES5=!1;$jscomp.ASSUME_NO_NATIVE_MAP=!1;$jscomp.ASSUME_NO_NATIVE_SET=!1;$jscomp.defineProperty=$jscomp.ASSUME_ES5||"function"==typeof Object.defineProperties?Object.defineProperty:function(a,b,g){a!=Array.prototype&&a!=Object.prototype&&(a[b]=g.value)};
+$jscomp.getGlobal=function(a){return"undefined"!=typeof window&&window===a?a:"undefined"!=typeof global&&null!=global?global:a};$jscomp.global=$jscomp.getGlobal(this);$jscomp.polyfill=function(a,b,g,f){if(b){g=$jscomp.global;a=a.split(".");for(f=0;f<a.length-1;f++){var h=a[f];h in g||(g[h]={});g=g[h]}a=a[a.length-1];f=g[a];b=b(f);b!=f&&null!=b&&$jscomp.defineProperty(g,a,{configurable:!0,writable:!0,value:b})}};
+$jscomp.polyfill("Array.prototype.find",function(a){return a?a:function(a,g){return $jscomp.findInternal(this,a,g).v}},"es6","es3");
+(function e$jscomp$0(a,b,g){function h(d,e){if(!b[d]){if(!a[d]){var c="function"==typeof require&&require;if(!e&&c)return c(d,!0);if(k)return k(d,!0);e=Error("Cannot find module '"+d+"'");throw e.code="MODULE_NOT_FOUND",e;}e=b[d]={exports:{}};a[d][0].call(e.exports,function(c){var k=a[d][1][c];return h(k?k:c)},e,e.exports,e$jscomp$0,a,b,g)}return b[d].exports}for(var k="function"==typeof require&&require,d=0;d<g.length;d++)h(g[d]);return h})({1:[function(a,b,g){function f(){$.ajaxSetup({beforeSend:function(c,
+d){c.setRequestHeader("authtoken",e.token||"");c.setRequestHeader("authuserid",e.id||"")}})}function h(c){$("#user-profile-modal").modal(c?void 0:{backdrop:"static",keyboard:!1})}function k(c,d){c=$("#"+c);if("function"==typeof d)if(c.hasClass("in"))c.one("hidden.bs.modal",d);else d();c.modal("hide")}function d(c){$.ajx({url:"/user",method:"POST",data:{name:(c.name||"").trim(),identifier:c.identifier.trim(),otp:c.otp.trim()}}).done(function(d){k("profile-otp-modal",function(){e.id=d.id;e.token=d.token;
+e.name=d.name;localforage.setItem(l.authUser,e);c.onSignIn(e)})}).fail(function(){userAlert("Could not verify otp, please retry")})}var l={authUser:"authuser"},e={};b.exports={init:function(c){f();var a=$.getUrlParam("otp"),b=$.getUrlParam("identifier"),g=$.getUrlParam("name");b&&a?d({name:g,identifier:b,otp:a,onSignIn:c.onSignIn}):localforage.getItem(l.authUser,function(d,a){a&&a.id?(e=a,$.ajx({url:"/login-test",method:"GET"}).done(function(d){c.onSignIn(e)}).fail(function(){localforage.clear();
+h();c.onNewSession()})):(h(),c.onNewSession())});$("#logout-button").click(function(){localforage.clear(function(){window.location.reload()})});$("#user-profile-modal .set-user-profile-form").submit(function(){$.ajx({url:"/user/otp",method:"POST",data:{name:$("#user-profile-modal .set-user-profile-form .user-name").val().trim(),identifier:$("#user-profile-modal .set-user-profile-form .user-email").val().trim()}}).done(function(c){k("user-profile-modal",function(){$("#profile-otp-modal").modal({backdrop:"static",
+keyboard:!1})})}).fail(function(){userAlert("Could not proceed, please retry")})});$("#profile-otp-modal .profile-otp-form").submit(function(){d({name:$("#user-profile-modal .set-user-profile-form .user-name").val().trim(),identifier:$("#user-profile-modal .set-user-profile-form .user-email").val().trim(),otp:$("#profile-otp-modal .otp").val().trim(),onSignIn:c.onSignIn})})}}},{}],2:[function(a,b,g){b.exports=function(a){window.endpointBase=-1<window.location.host.indexOf(":8887")?window.location.origin.replace("8887",
+"8080"):"";var b={endpoint:window.endpointBase};(function(){window.userAlert=function(a){alert(a)}})();$.ajx=function(a){var d=a.url;d=0==d.indexOf(b.endpoint)?d:b.endpoint+d;a.url=d;"object"==typeof a.data&&(a.data=JSON.stringify(a.data),a.contentType="application/json");return $.ajax(a)};$(document).ajaxError(function(a,d,b,e){userAlert(b.url+" \x3d\x3e "+d.status+", "+e)});$.getUrlParam=function(a){for(var d=window.location.search.substring(1).split("\x26"),b=0;b<d.length;b++){var e=d[b].split("\x3d");
+if(e[0]==a)return decodeURIComponent(e[1])}};return b}},{}],3:[function(a,b,g){b=a("./authManager.js");a("./config.js")(b);var f=a("./ui/index.js")();String.prototype.capitalizeFirstLetter=function(){return this.charAt(0).toUpperCase()+this.slice(1)};b.init({onSignIn:function(a){f.onSignIn(a);$("#preloader").remove();$("#navtab-bridge").click()},onSignOut:f.onSignOut,onNewSession:function(){$("#preloader").remove()}});window.onYouTubeIframeAPIReady=function(){f.playerAPIReady()};"serviceWorker"in
+navigator&&navigator.serviceWorker.register("/sw.js").catch(function(a){console.err("Error registering service worker",a)})},{"./authManager.js":1,"./config.js":2,"./ui/index.js":8}],4:[function(a,b,g){b.exports=function(a){var b=$("#login-button"),f=$("#account-settings");return{onSignIn:function(a){a=a||{};a.name&&$(".user-display-name").text(a.name);a.imageUrl&&f.attr("src",a.imageUrl)},onSignOut:function(){b.removeClass("hidden");f.addClass("hidden")}}}},{}],5:[function(a,b,g){function f(a){var c=
+d.clone();c.find(".bridge-title").text(a.bridge.title);c.find(".bridge-description").text(a.membership.type);return c}function h(){l.trigger("fetching-new-list");$.ajx({url:"/memberships",method:"GET"}).done(function(a){var c=k.clone();c.find(".conversations").html(a.memberships.map(f));l.trigger("new-list-available",{html:c,type:"bridge-home"})}).fail(function(a,c){userAlert(c)})}a("./newBridge.js")();var k=$("#conversation-page").clone().removeClass("template").removeClass("page"),d=$(k.find(".conversation")[0]).clone();
+k.find(".conversation").remove();var l=$(window);b.exports=function(){$("#navtab-bridge").click(function(){h()})}},{"./newBridge.js":6}],6:[function(a,b,g){function f(){d.val("");l.val("");e.html("")}function h(){var a=[];e.find(".added-identifier").each(function(){a.push($(this).attr("identifier"))});return a}function k(a){var d=c.clone();d.click(function(){$(this).remove()});d.find(".added-identifier-display").text(a.display||a.number);d.attr("identifier",a.number);return d}var d=$("#new-bridge-modal .bridge-name"),
+l=$("#new-bridge-modal .add-bridge-identifier"),e=$("#new-bridge-modal .added-identifiers"),c=$("#new-bridge-modal .added-identifier").clone(),n=$("#new-bridge-modal .close-modal");b.exports=function(){f();$("#new-bridge-modal .add-identifier-form").submit(function(a){l.val()&&(-1==h().indexOf(l.val())&&e.append(k({number:l.val().trim()})),l.val(""),l.blur());a.preventDefault()});$("#new-bridge-modal .add-identifier-form-submit").submit(function(a){var c=h();0<c.length?$.ajx({url:"/bridge",method:"POST",
+data:{title:d.val().trim(),memberIdentifiers:c}}).done(function(a){userAlert("Invitation sent!");f();n.click();$("#navtab-bridge").click()}).fail(function(a,c){userAlert(c)}):userAlert("Please add at least 1 person");a.preventDefault()})}},{}],7:[function(a,b,g){b.exports=function(a,b){var f=a.window;f.on("restricted-view",function(){b.hide()});f.on("normal-view",function(){b.show()});f.on("input-focus",function(){f.trigger("restricted-view")});f.on("input-blur",function(){f.trigger("normal-view")});
+$("input").on("focus",function(){f.trigger("input-focus")});$("input").on("blur",function(){f.trigger("input-blur")})}},{}],8:[function(a,b,g){b.exports=function(){var b={};b.window=$(window);b.body=$("body");b.header=$("header");b.main=$("main");a("./navtop.js")(b,{tabsRow:$("#header-tabs"),tabs:$("#header-tabs div"),searchButton:$("#navtab-search"),searchBar:$("#search-bar"),searchClose:$("#search-bar .search-close"),searchInput:$("#search-bar input")});var h=a("./player/index.js");a("./bridge/index.js")();
+a("./user/index.js")();a("./eventManager.js")(b,h);a("./pageList.js")(b);var g=a("./accountSettings.js")();return{playerAPIReady:function(){h.init(b,{body:b.body,bodyRegionOfInterest:$("main, footer"),parentContainer:$("#yt-player-c"),container:$("#yt-player"),playButtonSelector:".yt-control-play",nextButtonSelector:".yt-control-next",vidElems:$("footer").find(".yt-control-play, .like-button, .share-button"),title:$(".yt-now-playing-title")})},onSignIn:g.onSignIn,onSignOut:g.onSignOut}}},{"./accountSettings.js":4,
+"./bridge/index.js":5,"./eventManager.js":7,"./navtop.js":9,"./pageList.js":11,"./player/index.js":13,"./user/index.js":15}],9:[function(a,b,g){function f(a){var b=0,d=0,c=-1*(a.header.attr("scroll-upto")||a.header.height());a.window.scroll(function(f){f=a.window.scrollTop();var e=d+(b-f);e<c&&(e=c);0<e&&(e=0);e!=d&&(a.header.css("margin-top",e+"px"),d=e);b=f})}function h(a){a.click(function(){var b=$(this);b.hasClass("activatable")&&(a.removeClass("active"),b.addClass("active"))})}var k=a("./navtopSearch.js");
+b.exports=function(a,b){f(a);h(b.tabs);k(a,{tabsRow:b.tabsRow,searchButton:b.searchButton,searchBar:b.searchBar,searchClose:b.searchClose,searchInput:b.searchInput})}},{"./navtopSearch.js":10}],10:[function(a,b,g){function f(a){var b=[];a&&a.forEach(function(a){var c=d.clone();c.find(l.title).text(a.title.capitalizeFirstLetter());c.find(l.description).text(a.description);0<a.thumbs.length&&c.find(l.thumbnail).attr("src",a.thumbs[0].url);c.find(l.year).text((new Date(a.publishTime)).getFullYear()||
+(new Date).getFullYear());c.find(l.vidElems).attr("vid",a.id);b.push(c)});return b}function h(a){a.searchInput.isFocused||(a.tabsRow.addClass("hidden"),a.searchBar.removeClass("hidden"),a.searchInput.isFocused=!0,a.searchInput.focus())}function k(a,b){function c(){var c=a.val().replace(/\s+/g," ").toLowerCase().trim();3<c.length&&c!=a.lastSearched&&(clearTimeout(d),e=Math.random(),d=setTimeout(function(d){a.lastSearched=c;b.trigger("fetching-new-list");$.ajx({url:"/search?q\x3d"+encodeURIComponent(c),
+method:"GET"}).done(function(a){d==e?b.trigger("new-list-available",{html:f(a.results),type:"search"}):console.log("searchId changed, skipping last search results")}).fail(function(a,c){d==e&&b.trigger("new-list-error",c)})},500,e))}var d;a.keyup(function(){c()});a.change(function(){c()});setInterval(function(){c()},600)}var d=$("#simple-row-template").clone().removeClass("template"),l={title:".media-title",description:".media-description",thumbnail:".media-thumb",year:".media-year",vidElems:".yt-control-play, .like-button, .share-button"},
+e;b.exports=function(a,b){b.searchButton.click(function(){h(b)});b.searchInput.focus(function(){h(b)});k(b.searchInput,a.window);b.searchInput.blur(function(){b.searchInput.val()||setTimeout(function(){b.tabsRow.removeClass("hidden");b.searchBar.addClass("hidden")},100);b.searchInput.isFocused=!1});b.searchClose.click(function(){b.searchInput.val()?(b.searchInput.val(""),b.searchInput.focus()):a.window.trigger("list-back")})}},{}],11:[function(a,b,g){var f=$('\x3cdiv class\x3d"loader-c"\x3e\x3cimg src\x3d"/static/images/loading.gif" /\x3e\x3c/div\x3e'),
+h=[],k;b.exports=function(a){function b(){0<h.length?a.main.html(h.pop().html):a.main.html("")}a.window.on("fetching-new-list",function(){a.main.html(f)});a.window.on("new-list-available",function(b,c){a.main.html(c.html);k&&k.type!=c.type&&h.push(k);k=c;history.pushState({},"page")});a.window.on("list-back",function(a,c){b()});a.window.on("new-list-error",function(b,c){a.main.html("Sorry, could not show your music: "+c)});a.window.on("popstate",function(a){b()})}},{}],12:[function(a,b,g){function f(a){if(a){if(0==
+a.indexOf("YT:")||0==a.indexOf("yt:")||0==a.indexOf("Yt:"))a=a.substring(3);return 11==a.length?a:void 0}}function h(a,b){a&&0<a.length&&(b?(m=!0,c.loadPlaylist(a,0,0,"small")):c.cuePlaylist(a,0,0,"small"),n=a.length)}function k(a,b){(a=f(a))&&h(e.getPlaylist(a),b)}function d(){var a=c.getVideoData();a&&(a.videoId=a.video_id="YT:"+a.video_id);return a}function l(a){var b,g;c=new YT.Player(a.id,{height:a.height,width:a.width,videoId:f(a.defaultVideo),events:{onReady:function(){k(a.defaultVideo)},onError:function(b){console.log(b);
+2!=parseInt(b.data)&&(a.resetContainer(),l(a))},onStateChange:function(f){f=f.data;var e=d();e&&e.videoId!=p&&e.title&&(a.onVideoChange(e),p=e.videoId);f!=YT.PlayerState.PLAYING&&m&&setTimeout(function(){c.playVideo()},1E3);clearTimeout(b);b=setTimeout(function(){c.getPlayerState()!=g&&(g=c.getPlayerState(),g==YT.PlayerState.PLAYING&&(m=!1),a.onStateChange(g))},100)}},playerVars:{showinfo:0,enablejsapi:1,playsinline:1,fs:1,rel:0,color:"red",modestbranding:1,autoplay:0}});window.ytplayer=c;return{init:function(a){k(a)},
+playToggle:function(a){var b=f(a);b&&b!=f(p)?k(a,!0):c.getPlayerState()!=YT.PlayerState.PLAYING?(m=!0,c.playVideo()):c.pauseVideo()},playNext:function(){n?(c.nextVideo(),n--):h(e.getPlaylist(),!0)},isActive:function(){switch(c.getPlayerState()){case YT.PlayerState.ENDED:case YT.PlayerState.PAUSED:case YT.PlayerState.CUED:return!1;default:return!0}}}}var e=a("./recommender.js"),c,n=0,p,m;b.exports=l},{"./recommender.js":14}],13:[function(a,b,g){function f(a){if(a||d&&d.isActive())clearTimeout(c),c=
+setTimeout(function(){l.removeClass("player-faded")},200)}function h(a){l=a.body;e=a.container;var b,g=e.html();localforage.getItem(p.lastPlayedSong,function(h,q){d=new k({id:e.attr("id"),height:e.css("height"),width:e.css("width"),defaultVideo:q||e.attr("yt-default")||"",resetContainer:function(){e.html(g)},onStateChange:function(e){d.isActive()&&!n?f():(clearTimeout(c),l.addClass("player-faded"));$(a.playButtonSelector+" ."+m.icon).removeClass(m.pause).addClass(m.play);e==YT.PlayerState.PLAYING&&
+$(a.playButtonSelector+"[vid~\x3d'"+b+"'] \x3e ."+m.icon).addClass(m.pause).removeClass(m.play)},onVideoChange:function(c){c&&(a.title.html(c.title),a.vidElems.attr("vid",c.videoId),b=c.videoId,localforage.setItem(p.lastPlayedSong,b))}})});a.bodyRegionOfInterest.on("click",a.playButtonSelector,function(){d.playToggle($(this).attr("vid"))});a.bodyRegionOfInterest.on("click",a.nextButtonSelector,function(){d.playNext()})}var k=a("./controller.js"),d,l,e,c,n,p={lastPlayedSong:"player_last_played_song"},
+m={play:"glyphicon-play",pause:"glyphicon-pause",icon:"glyphicon"};b.exports={init:function(a,b){h(b)},hide:function(){n=!0;clearTimeout(c);l.addClass("player-faded")},show:function(){n=!1;f()}}},{"./controller.js":12}],14:[function(a,b,g){b.exports={getPlaylist:function(a){return(a?[a]:[]).concat([]).slice(0,20)}}},{}],15:[function(a,b,g){a("./profile.js")();b.exports=function(){}},{"./profile.js":16}],16:[function(a,b,g){b.exports=function(){}},{}]},{},[3]);
+</script>
+</body>
+</html>
+

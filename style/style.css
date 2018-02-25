@@ -1,0 +1,267 @@
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+body {
+	font-family: 'Nunito', sans-serif;
+    padding: 0;
+    margin: 0;
+	padding-top:55px;
+	padding-bottom:261px;
+	font-size: 16px;
+	background: #f1f1f1;
+}
+
+body, html {
+	/* Disables pull-to-refresh */
+	overscroll-behavior-y: none;
+}
+
+body.player-faded {
+	padding-bottom: 45px;
+}
+
+header {
+    background: #38bfc4;
+    height: 55px;
+    position: fixed;
+    top: 0;
+    transition: top 0.2s ease-in-out;
+    width: 100%;
+    z-index: 1;
+    color: white;
+    box-shadow: 0 2px 2px 0 #ccc;
+}
+
+header img.logo {
+	height: 35px
+}
+
+header .row {
+	margin-top:10px;
+}
+
+.nav-elem {
+	font-size: 14px;
+	line-height: 18px;
+}
+
+.nav-elem .glyphicon {
+	font-size: 16px;
+}
+
+#account-settings{
+	height: 20px;
+	width: 20px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+#search{
+    border: 0;
+    margin-top: 4px;
+}
+
+#search-bar .search-close {
+	margin-top: 10px;
+}
+
+.header-tab {
+	cursor: pointer;
+	height: 38px;
+	overflow: hidden;
+}
+
+.header-tab.active .glyphicon, .header-tab:hover .glyphicon{
+	color: lawngreen;
+}
+
+.template, .page {
+	display: none;
+}
+
+.simple-row {
+	padding: 5px;
+	background: white;
+	border-radius: 3px;
+	margin-bottom: 10px;
+}
+
+.simple-row > .row{
+	margin: 5px 0;
+}
+
+#yt-player-c{
+    background:#000;
+    height: 216px;
+    position: fixed;
+    bottom: 45px;
+    left:0;
+    width: 100%;
+    min-width:384px;
+    text-align:center;
+    z-index: 1;
+    box-shadow: 0 -2px 2px 0 #ccc;
+    opacity: 1;
+    transition: bottom 0.3s ease-out, opacity 0.2s ease-in;
+}
+
+body.player-faded #yt-player-c {
+    bottom: -172px;
+    opacity: 0;
+}
+
+#yt-player {
+    height: 216px;
+    width: 384px;
+}
+
+footer {
+    background:#38bfc4;
+    height: 45px;
+    line-height: 45px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+    color: #fff;
+}
+
+.yt-control {
+    cursor: pointer;
+}
+
+/* Global defaults */
+
+.overflow-ellipses {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+.break-word {
+	word-wrap: break-word;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+input {
+    margin: 0px;
+    padding: 3px 0px;
+    border: 0px;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #333;
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+    outline: 0;
+    box-sizing: border-box;
+    width:100%;
+}
+
+/* Placeholder color */
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: inherit;
+    text-align: left;
+    opacity: 0.8;
+    padding-left: 7px;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: inherit;
+    text-align: left;
+    opacity: 0.8;
+    padding-left: 7px;
+}
+
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: inherit;
+    text-align: left;
+    opacity: 0.8;
+    padding-left: 7px;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: inherit;
+    text-align: left;
+    opacity: 0.8;
+    padding-left: 7px;
+}
+
+.loader-c {
+	position: relative;
+	height: 30px;
+	text-align: center;
+}
+
+.loader-c img {
+	height: 100%;
+}
+
+.loader-c .loader {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	box-sizing: border-box;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	border-top: 3px solid #38bfc4;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	-webkit-animation: spin 0.7s linear infinite;
+	animation: spin 0.7s linear infinite;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.scrollable {
+	overscroll-behavior: contain;
+	overflow: auto;
+}
+
+.yt-control-play {
+	cursor: pointer
+}
+
+.page-navtab {
+	float: left;
+	padding: 5px 10px;
+	background: white;
+	border-radius: 4px;
+	color: #38bfc4;
+	cursor: pointer;
+	box-shadow: 0px 0px 8px #ddd;
+}
+
+.btn-primary {
+	background: #38bfc4 !important;
+	border-color: #38bfc4 !important;
+}

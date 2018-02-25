@@ -1,0 +1,19 @@
+{
+	"name": "Musicmonk",
+	"short_name": "Musicmonk",
+	"icons": [{
+		"src": "images/icons/icon192.png",
+		"sizes": "192x192",
+		"type": "image/png"
+	}, {
+		"src": "images/icons/icon256.png",
+		"sizes": "256x256",
+		"type": "image/png"
+	}],
+	"scope": "/",
+	"start_url": "/index.html",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#38bfc4",
+	"orientation": "portrait"
+}

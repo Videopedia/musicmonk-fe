@@ -1,0 +1,14 @@
+{
+  "name": "html",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "cd ../js; npm run build && cd ../html; cat ./index.html | ./node_modules/.bin/inline-source --root ../ > ../index.html",
+    "build-dev": "watch -n1 'cat ./index.html | ./node_modules/.bin/inline-source --root ../ > ../index.html'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "inline-source-cli": "^1.2.0"
+  }
+}

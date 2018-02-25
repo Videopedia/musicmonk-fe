@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SSL redirect -->
+    <script type="text/javascript">
+    if (location.protocol != 'https:' && window.location.origin.indexOf('musicmonk.in') > 0)
+        location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+
+
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=384, user-scalable=no">
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://musicmonk.in"/>
+    <meta property="og:title" content="Musicmonk"/>
+    <meta property="og:image" content="https://musicmonk.in/static/images/icons/icon256.png"/>
+    <meta property="og:description" content="Listen great music, together with people you know!"/>
+    <meta property="fb:admins" content="100000206242821"/>
+    <meta property="fb:app_id" content="862445890467064"/>
+    <meta name="keywords" content="music, friends"/>
+    <meta name="description" content="Listen great music, together with people you know!"/>
+
+    <meta name="google-signin-client_id"
+          content="715692314569-6quttqf1ubb47cqsl0d35ctov26rpevh.apps.googleusercontent.com">
+
+    <title>Musicmonk</title>
+
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/icons/icon192.png">
+    <!--[if IE]>
+    <link rel="shortcut icon" href="/static/images/icons/icon.ico"><![endif]-->
+    <!-- Add to home screen for Android and modern mobile browsers -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#38bfc4">
+
+    <!-- Add to home screen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Musicmonk">
+    <link rel="apple-touch-icon" href="/static/images/icons/icon192.png">
+
+    <!-- Add to home screen for Windows -->
+    <meta name="msapplication-TileImage" content="/static/images/icons/icon192.png">
+    <meta name="msapplication-TileColor" content="#38bfc4">
+
+    <link rel="stylesheet" href="/style/lib.css?v=0.10">
+    <link inline rel="stylesheet" href="/style/style.css">
+</head>
+<body class="player-faded">
+<div id=preloader
+     style="position:fixed; width:100%; height:100%; z-index:9999999999; top:0; left:0; background:white; text-align:center;">
+    <img src="/static/images/loading.gif"
+         style="width: 30px; position: absolute; top: 0; bottom: 50%; left: 0; right: 0; margin: auto; box-sizing: border-box;"/>
+    <noscript>Please enable Javascript to continue</noscript>
+</div>
+<header scroll-upto="">
+    <div class="container text-center">
+        <div id="search-bar" class="row hidden">
+            <div class="col-xs-10 text-left">
+                <input id="search" name="music-search" type="search" placeholder="Search music"/>
+            </div>
+            <div class="col-xs-2 text-right">
+                <span class="glyphicon glyphicon-remove search-close clickable"></span>
+            </div>
+        </div>
+        <div id="header-tabs" class="row nav-elem">
+            <div class="col-xs-4 header-tab" id="navtab-search"><span class="glyphicon glyphicon-search"></span><br/>Search
+            </div>
+            <div class="col-xs-4 header-tab activatable" id="navtab-bridge"><span
+                    class="glyphicon glyphicon-equalizer"></span><br/>Music Bridge
+            </div>
+            <div class="col-xs-4 header-tab" id="account-c">
+                <img id="account-settings" src="/static/images/default-user-300x300.png"/>
+                <br/><span class="user-display-name">Music Lover</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="container" style="padding-top: 10px;">
+    <div id="simple-row-template" class="template simple-row">
+        <div class="row">
+            <div class="col-xs-12 yt-control-play">
+                <img src="" class="media-thumb img-circle"
+                     style="height: 42px;	width: 42px; margin-left: 11px; float: right;"/>
+                <div class="media-title">Title</div>
+            </div>
+        </div>
+        <div class="row hidden">
+            <div class="col-xs-12 media-description break-word overflow-ellipses hidden-xs">
+                Description
+            </div>
+        </div>
+        <div class="row">
+            <div class="media-year hidden">
+                Year
+            </div>
+            <div class="col-xs-2 text-left yt-control-play" vid="l0DoQYGZt8M">
+                <span class="glyphicon glyphicon-play"></span>
+            </div>
+            <div class="col-xs-2 text-center like-button">
+                <span class="glyphicon glyphicon-heart"></span>
+            </div>
+            <div class="col-xs-2 text-right share-button">
+                <span class="glyphicon glyphicon-share"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="conversation-page" class="page">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-navtab" data-toggle="modal" data-target="#new-bridge-modal">Create bridge</div>
+            </div>
+        </div>
+        <div class="conversations" style="margin-top: 10px;">
+            <div class="simple-row conversation">
+                <div class="row">
+                    <div class="col-sm-1 col-xs-2 text-left">
+                        <img src="/static/images/default-user-300x300.png" class="bridge-thumb img-circle"
+                             style="height: 42px; width: 42px;"/>
+                    </div>
+                    <div class="col-sm-11 col-xs-10">
+                        <div class="row">
+                            <div class="col-xs-12 bridge-title">
+                                Title
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 bridge-description">
+                                Last played song
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modals -->
+<div id="new-bridge-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center"><strong>Bridge</strong></h4>
+                <h5 class="modal-title text-center">Listen great music, together with people you know!</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal add-identifier-form" action="javascript:void(0);" autocomplete="off">
+                    <div class="form-group col-xs-12">
+                        Enter a name for the bridge:
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                <input type="text" class="form-control bridge-name"
+                                       placeholder="e.g. 90's music with school friends" autocomplete="off" required/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        Invite people via email:
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10 col-xs-9">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="email" class="form-control add-bridge-identifier"
+                                       placeholder="e.g. friend@email.com" autocomplete="off" required/>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 col-xs-3 text-right">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 added-identifiers">
+                            <button class="added-identifier btn btn-default"
+                                    style="margin-right: 6px; margin-bottom: 6px"><span
+                                    class="added-identifier-display"></span> &nbsp;<b>X</b></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <form class="form-horizontal add-identifier-form-submit" action="javascript:void(0);"
+                      autocomplete="off">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="user-profile-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Hello music lover!</h4>
+            </div>
+            <form class="form-horizontal set-user-profile-form" action="javascript:void(0);">
+                <div class="modal-body">
+                    <div class="form-group col-xs-12">
+                        Your name
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" class="form-control user-name" placeholder="full name"
+                                   autocomplete="name"
+                                   required/>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        Email address
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="email" class="form-control user-email" placeholder="email address"
+                                   autocomplete="email" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="profile-otp-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">We just sent you an OTP</h4>
+            </div>
+            <form class="form-horizontal profile-otp-form" action="javascript:void(0);">
+                <div class="modal-body">
+                    <div class="form-group col-xs-12">
+                        Enter the OTP here and we are ready
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input type="text" class="form-control otp" placeholder="OTP" autocomplete="off" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <small>OTP delayed? You may login later by clicking the link you receive in the email
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="yt-player-c" class="faded">
+    <div id="yt-player" yt-default="RTFhmXaXQXI"></div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-1 yt-control yt-control-play"><span class="glyphicon glyphicon-play"></span></div>
+            <div class="col-xs-1 yt-control yt-control-next"><span class="glyphicon glyphicon-forward"></span></div>
+            <div class="col-xs-1 like-button"><span class="glyphicon glyphicon-heart"></span></div>
+            <div class="col-xs-1 share-button"><span class="glyphicon glyphicon-share"></span></div>
+            <div class="col-xs-8 text-right yt-now-playing-title overflow-ellipses">...</div>
+        </div>
+    </div>
+</footer>
+
+<!-- JS Libs -->
+<script src="/js/build/lib.js?v=0.12"></script>
+<script inline src="/js/build/bundle.js"></script>
+</body>
+</html>
